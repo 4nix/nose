@@ -7,7 +7,6 @@
     "@types/node": "^12.12.31",
     "@types/react": "^16.9.25",
     "@types/react-dom": "^16.9.5",
-    "@types/react-router-dom": "^4.3.5",
     "antd": "^3.26.14",
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
@@ -46,5 +45,7 @@
     ]
   },
   "homepage": "https://nose.wall-e.club",
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/react-router-dom": "^5.1.3"
+  }
 }

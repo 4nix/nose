@@ -1,16 +1,21 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom';
 
-import Nose from './pages/nose/Index';
+import Nose from './pages/nose/Index'
+import NoseItemList from './pages/nose/ItemList'
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Router>
-        <Route exact path="/" component={ Main } />
-        <Route path="/nose" component={ Nose } />
+      <Router forceRefresh={true}>
+        <Switch>
+          <Route exact path="/" component={ Main } />
+          <Route exact path="/list" component={ Nose } />
+          <Route exact path="/list/:gid" component={ NoseItemList } />
+          <Route exact path="/list/:gid/:rid" component={ withRouter(NoseItemList) } />
+        </Switch>
       </Router>
 
     </div>

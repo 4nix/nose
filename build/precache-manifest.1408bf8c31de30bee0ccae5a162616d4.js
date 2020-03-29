@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bd1a24597e6939161585ffb7999cecb5",
+    "revision": "6ba5570a85e2858a293049d47e2712e9",
     "url": "https://nose.wall-e.club/index.html"
   },
   {
-    "revision": "5305f6961600b65e28b9",
+    "revision": "a036ccacb8734c2631ed",
     "url": "https://nose.wall-e.club/static/css/2.051905ae.chunk.css"
   },
   {
-    "revision": "042dcf69a8071c2005d9",
+    "revision": "0c6afbc972cc798c40e1",
     "url": "https://nose.wall-e.club/static/css/main.19393e92.chunk.css"
   },
   {
-    "revision": "5305f6961600b65e28b9",
-    "url": "https://nose.wall-e.club/static/js/2.d63dc8dd.chunk.js"
+    "revision": "a036ccacb8734c2631ed",
+    "url": "https://nose.wall-e.club/static/js/2.9f4f10da.chunk.js"
   },
   {
-    "revision": "042dcf69a8071c2005d9",
-    "url": "https://nose.wall-e.club/static/js/main.c135d4c0.chunk.js"
+    "revision": "0c6afbc972cc798c40e1",
+    "url": "https://nose.wall-e.club/static/js/main.19ee2fb2.chunk.js"
   },
   {
     "revision": "03d37fbb964f458a2244",
