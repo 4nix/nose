@@ -9,7 +9,7 @@ import NoseItemList from './pages/nose/ItemList'
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Router forceRefresh={true}>
+      <Router>
         <Switch>
           <Route exact path="/" component={ Main } />
           <Route exact path="/list" component={ Nose } />

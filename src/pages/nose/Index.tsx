@@ -74,7 +74,7 @@ class Index extends React.Component<RouteComponentProps<RouteParams>, IState> {
       <div>
         <h3>Test nose!</h3>
         <Button onClick={this.handleCreate}>新增</Button>
-        <Edit ref={this.onRef} />
+        <Edit ref={this.onRef} refresh={this.fetchData} />
         <List 
         size="small" 
         dataSource={ this.state.data } 
