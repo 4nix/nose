@@ -5,7 +5,8 @@ import Axios from 'axios'
 
 interface IProps {
   groupID: string | undefined,
-  relateID: string | undefined
+  relateID: string | undefined,
+  refresh: any
 }
 
 interface IState {
@@ -40,7 +41,9 @@ class EditItem extends React.Component<IProps, IState> {
     data.append('content', this.state.content)
     data.append('mid', this.state.modeID)
 
-    Axios.post(process.env.REACT_APP_HOST + '/admin/item', data)
+    Axios.post(process.env.REACT_APP_HOST + '/admin/item', data).then(res => {
+      this.props.refresh()
+    })
   }
 
   handleCancle = () => {
@@ -76,22 +79,26 @@ class EditItem extends React.Component<IProps, IState> {
               } />
             </Form.Item>
             <Form.Item label="Config:">
-              <Input onChange={
+              <Input.TextArea onChange={
                 (e: any) => {
                   this.setState({
                     config: e.target.value
                   })
                 }
-              }/>
+                }
+                autoSize={{ minRows: 2 }}
+              />
             </Form.Item>
             <Form.Item label="content:">
-              <Input onChange={
+              <Input.TextArea onChange={
                 (e: any) => {
                   this.setState({
                     content: e.target.value
                   })
                 }
-              }/>
+                }
+                autoSize={{ minRows: 3 }}
+              />
             </Form.Item>
             <Form.Item label="mode:">
               <Input onChange={

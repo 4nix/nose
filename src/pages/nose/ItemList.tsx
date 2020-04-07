@@ -86,7 +86,7 @@ export default class ItemList extends React.Component<RouteComponentProps<RouteP
       <div>
         <h3>Test item! {gid} {rid} | {this.state.gid} {this.state.rid}</h3>
         <Button onClick={this.handleCreate}>新增</Button>
-        <Edit ref={this.onRef} groupID={gid} relateID={rid} />
+        <Edit ref={this.onRef} groupID={gid} relateID={rid} refresh={this.fetchData} />
         <List 
         size="small" 
         dataSource={ this.state.data }

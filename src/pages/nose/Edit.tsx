@@ -4,7 +4,7 @@ import 'antd/dist/antd.css'
 import Axios from 'axios'
 
 interface IProps {
-
+  refresh: any
 }
 
 interface IState {
@@ -26,7 +26,9 @@ class Edit extends React.Component<IProps, IState> {
     data.append('name', this.state.groupName);
     data.append('config', this.state.config);
 
-    Axios.post(process.env.REACT_APP_HOST + '/admin/group', data)
+    Axios.post(process.env.REACT_APP_HOST + '/admin/group', data).then((res) => {
+      this.props.refresh()
+    })
   }
 
   handleCancle = () => {
@@ -60,13 +62,15 @@ class Edit extends React.Component<IProps, IState> {
               } />
             </Form.Item>
             <Form.Item label="Config:">
-              <Input onChange={
+              <Input.TextArea onChange={
                 (e: any) => {
                   this.setState({
                     config: e.target.value
                   })
                 }
-              }/>
+                }
+                autoSize={{ minRows: 2 }}
+              />
             </Form.Item>
           </Form>
         </Modal>
