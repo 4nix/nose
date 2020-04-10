@@ -4,23 +4,9 @@ import 'antd/dist/antd.css'
 import Edit from './Edit'
 import Axios from 'axios'
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
   Link,
   RouteComponentProps
 } from "react-router-dom"
-
-const data: string[] = [
-  'line 1',
-  'line 2',
-  'line 3',
-  'line 4',
-  'line 5',
-  'line 6',
-  'line 7',
-  'line 8'
-];
 
 interface IProps {
 
@@ -36,6 +22,11 @@ interface RouteParams {
   rid?: string
 }
 
+interface GroupInfo {
+  id: number,
+  name: string
+}
+
 class Index extends React.Component<RouteComponentProps<RouteParams>, IState> {
   state: Readonly<IState> = {
     data: [],
@@ -43,6 +34,7 @@ class Index extends React.Component<RouteComponentProps<RouteParams>, IState> {
   }
 
   readonly url: string = process.env.REACT_APP_HOST + "/admin/list"
+  readonly groupUrl: string = process.env.REACT_APP_HOST + "/admin/group"
   editLayer: any
 
   constructor(props: RouteComponentProps<RouteParams>) {
@@ -55,6 +47,18 @@ class Index extends React.Component<RouteComponentProps<RouteParams>, IState> {
 
   handleCreate = () => {
     this.editLayer.show()
+  }
+
+  handleDelete = (item:GroupInfo) => {
+    Modal.confirm({
+      title: '确定要删除',
+      content: 'ID: ' + item.id + ', Name: ' + item.name,
+      onOk:() => {
+        Axios.delete(this.groupUrl + '/' + item.id).then(res => {
+          this.fetchData()
+        })
+      }
+    })
   }
 
   componentDidMount() {
@@ -82,7 +86,9 @@ class Index extends React.Component<RouteComponentProps<RouteParams>, IState> {
                                 actions={[
                                   <Link to={"list/" + item.id} key='list-loadmore-edit'>view</Link>, 
                                   <a key='list-loadmore-edit'>edit</a>, 
-                                  <a key='list-loadmore-del'>delete</a>]}
+                                  <a key='list-loadmore-del' onClick={e => {
+                                    this.handleDelete(item)
+                                  }}>delete</a>]}
                               >{ item.name }</List.Item> }
         pagination={{
           onChange: page => {

@@ -28,6 +28,11 @@ interface RouteParams {
   rid?: string
 }
 
+interface ItemInfo {
+  id: number,
+  name: string
+}
+
 export default class ItemList extends React.Component<RouteComponentProps<RouteParams>, IState> {
   state: Readonly<IState> = {
     data: [],
@@ -35,6 +40,7 @@ export default class ItemList extends React.Component<RouteComponentProps<RouteP
   }
 
   readonly url: string = process.env.REACT_APP_HOST + "/admin/list"
+  readonly itemUrl: string = process.env.REACT_APP_HOST + "/admin/item"
   editLayer: any
 
   constructor(props: RouteComponentProps<RouteParams>) {
@@ -79,6 +85,18 @@ export default class ItemList extends React.Component<RouteComponentProps<RouteP
     })
   }
 
+  handleDelete = (item:ItemInfo) => {
+    Modal.confirm({
+      title: '确定要删除',
+      content: 'ID: ' + item.id + ', Name: ' + item.name,
+      onOk:() => {
+        Axios.delete(this.itemUrl + '/' + item.id).then(res => {
+          this.fetchData()
+        })
+      }
+    })
+  }
+
   render() {
     const {gid, rid} = this.props.match.params
     
@@ -94,7 +112,9 @@ export default class ItemList extends React.Component<RouteComponentProps<RouteP
                                 actions={[
                                   <Link to={"/list/" + item.group_id + "/" + item.id} key='list-loadmore-edit'>view</Link>, 
                                   <a key='list-loadmore-edit'>edit</a>, 
-                                  <a key='list-loadmore-del'>delete</a>]}
+                                  <a key='list-loadmore-del' onClick={e => {
+                                    this.handleDelete(item)
+                                  }}>delete</a>]}
                               >{ item.name }</List.Item> }
         pagination={{
           onChange: page => {
