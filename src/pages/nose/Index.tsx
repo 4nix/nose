@@ -30,7 +30,9 @@ interface GroupInfo {
 class Index extends React.Component<RouteComponentProps<RouteParams>, IState> {
   state: Readonly<IState> = {
     data: [],
-    pagination: []
+    pagination: {
+      pageSize: 20
+    }
   }
 
   readonly url: string = process.env.REACT_APP_HOST + "/admin/list"
@@ -68,15 +70,19 @@ class Index extends React.Component<RouteComponentProps<RouteParams>, IState> {
   fetchData = () => {
     Axios.get(this.url).then(res => {
       this.setState({
-        data: res.data
+        data: res.data,
+        pagination: {
+          ...this.state.pagination,
+          total: res.data.length
+        }
       })
     })
   }
 
   render() {
     return (
-      <div>
-        <h3>Test nose!</h3>
+      <div style={{margin: "auto", padding: "5px", width: "90%", border: "1px solid #eee"}}>
+        <h3>Test nose !</h3>
         <Button onClick={this.handleCreate}>新增</Button>
         <Edit ref={this.onRef} refresh={this.fetchData} />
         <List 
@@ -90,13 +96,7 @@ class Index extends React.Component<RouteComponentProps<RouteParams>, IState> {
                                     this.handleDelete(item)
                                   }}>delete</a>]}
                               >{ item.name }</List.Item> }
-        pagination={{
-          onChange: page => {
-            console.log(page)
-          },
-          pageSize: 20,
-          total: 20
-        }}
+        pagination={this.state.pagination}
         />
       </div>
     );

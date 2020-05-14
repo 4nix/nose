@@ -36,7 +36,7 @@ interface ItemInfo {
 export default class ItemList extends React.Component<RouteComponentProps<RouteParams>, IState> {
   state: Readonly<IState> = {
     data: [],
-    pagination: []
+    pagination: { pageSize: 20 }
   }
 
   readonly url: string = process.env.REACT_APP_HOST + "/admin/list"
@@ -57,7 +57,7 @@ export default class ItemList extends React.Component<RouteComponentProps<RouteP
 
   componentDidMount() {
     const {gid, rid} = this.props.match.params
-    console.log(gid, rid)
+    
     this.setState({
       gid: gid,
       rid: rid
@@ -80,7 +80,11 @@ export default class ItemList extends React.Component<RouteComponentProps<RouteP
 
     Axios.get(url).then(res => {
       this.setState({
-        data: res.data
+        data: res.data,
+        pagination: {
+          ...this.state.pagination,
+          total: res.data.length
+        }
       })
     })
   }
@@ -116,13 +120,7 @@ export default class ItemList extends React.Component<RouteComponentProps<RouteP
                                     this.handleDelete(item)
                                   }}>delete</a>]}
                               >{ item.name }</List.Item> }
-        pagination={{
-          onChange: page => {
-            console.log(page)
-          },
-          pageSize: 20,
-          total: 20
-        }}
+        pagination={ this.state.pagination }
         />
       </div>
     );
