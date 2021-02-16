@@ -4,7 +4,8 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom';
 
 import Nose from './pages/nose/Index'
-import NoseItemList from './pages/nose/ItemList'
+// import NoseItemList from './pages/nose/ItemList'
+import NoseList from './pages/nose/List'
 
 const App: React.FC = () => {
   return (
@@ -13,8 +14,8 @@ const App: React.FC = () => {
         <Switch>
           <Route exact path="/" component={ Main } />
           <Route exact path="/list" component={ Nose } />
-          <Route exact path="/list/:gid" component={ NoseItemList } />
-          <Route exact path="/list/:gid/:rid" component={ withRouter(NoseItemList) } />
+          <Route exact path="/list/:gid" component={ NoseList } />
+          <Route exact path="/list/:gid/:rid" component={ withRouter(NoseList) } />
         </Switch>
       </Router>
 

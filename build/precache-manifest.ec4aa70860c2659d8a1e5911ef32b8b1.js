@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "310557f50e75df294adc2da74db8beb3",
+    "revision": "f5f25a857236ce0cbc5701a64f89db32",
     "url": "https://nose.wall-e.club/index.html"
   },
   {
-    "revision": "0dc24a14199a3916462e",
-    "url": "https://nose.wall-e.club/static/css/2.d7262850.chunk.css"
+    "revision": "ad600b1cad06a4ba9004",
+    "url": "https://nose.wall-e.club/static/css/2.6d6d9816.chunk.css"
   },
   {
-    "revision": "895ab55d52e9faac4a5c",
+    "revision": "fcb16d5658d32676592f",
     "url": "https://nose.wall-e.club/static/css/main.19393e92.chunk.css"
   },
   {
-    "revision": "0dc24a14199a3916462e",
-    "url": "https://nose.wall-e.club/static/js/2.2817a16d.chunk.js"
+    "revision": "ad600b1cad06a4ba9004",
+    "url": "https://nose.wall-e.club/static/js/2.01c2314e.chunk.js"
   },
   {
-    "revision": "895ab55d52e9faac4a5c",
-    "url": "https://nose.wall-e.club/static/js/main.02968798.chunk.js"
+    "revision": "fcb16d5658d32676592f",
+    "url": "https://nose.wall-e.club/static/js/main.c2e625c2.chunk.js"
   },
   {
     "revision": "03d37fbb964f458a2244",
