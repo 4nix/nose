@@ -69,8 +69,9 @@ class Index extends React.Component<RouteComponentProps<RouteParams>, IState> {
 
   fetchData = () => {
     Axios.get(this.url).then(res => {
+      const { list } = res.data
       this.setState({
-        data: res.data,
+        data: list,
         pagination: {
           ...this.state.pagination,
           total: res.data.length
@@ -87,15 +88,15 @@ class Index extends React.Component<RouteComponentProps<RouteParams>, IState> {
         <Edit ref={this.onRef} refresh={this.fetchData} />
         <List 
         size="small" 
-        dataSource={ this.state.data } 
-        renderItem={ (item:any) => <List.Item
+        dataSource={this.state.data} 
+        renderItem={(item:any) => <List.Item
                                 actions={[
                                   <Link to={"list/" + item.id} key='list-loadmore-edit'>view</Link>, 
                                   <a key='list-loadmore-edit'>edit</a>, 
                                   <a key='list-loadmore-del' onClick={e => {
                                     this.handleDelete(item)
                                   }}>delete</a>]}
-                              >{ item.name }</List.Item> }
+                              >{ item.name }</List.Item>}
         pagination={this.state.pagination}
         />
       </div>
